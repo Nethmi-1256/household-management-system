@@ -1,2 +1,0 @@
-# household management system
-
