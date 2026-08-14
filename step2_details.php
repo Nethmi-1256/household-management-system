@@ -58,16 +58,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Step 2 - Housing Details | GN 759/A</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 py-10 px-4">
-    <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6">
+<?php
+$active      = 'households';
+$page_title  = 'නව ගෘහයක් එකතු කිරීම';
+$page_icon   = 'fa-plus';
+$breadcrumbs = [['label' => 'ගෘහ ලැයිස්තුව', 'url' => 'households_list.php'], ['label' => 'Step 2']];
+require 'includes/header.php';
+?>
+    <div class="max-w-4xl mx-auto gn-card p-6">
         <div class="mb-4 text-center">
             <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">Step 2 of 4</span>
             <h2 class="text-2xl font-bold mt-2 text-gray-800">නිවසේ ව්‍යුහය සහ ද්‍රව්‍ය විස්තර</h2>
@@ -160,5 +158,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </form>
     </div>
-</body>
-</html>
+<?php require 'includes/footer.php'; ?>

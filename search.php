@@ -70,21 +70,12 @@ if ($q !== '' || $filter_gender !== '' || $filter_employment !== '') {
     }
 }
 ?>
-<!DOCTYPE html>
-<html lang="si">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>තොරතුරු සෙවීම - GN 759/A Galhena</title>
-    
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
+<?php
+$active      = 'search';
+$page_title  = 'තොරතුරු සෙවීම';
+$page_icon   = 'fa-magnifying-glass';
+$breadcrumbs = [['label' => 'සොයන්න']];
+$extra_head  = '<style>
         @media print {
             .no-print { display: none !important; }
             body { background: white !important; font-size: 11pt; }
@@ -92,51 +83,9 @@ if ($q !== '' || $filter_gender !== '' || $filter_employment !== '') {
             .card { border: none !important; box-shadow: none !important; }
             .table-responsive { overflow: visible !important; }
         }
-    </style>
-</head>
-<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col">
-
-    <!-- Top Navigation Bar -->
-    <nav class="bg-slate-900 text-white shadow-md sticky top-0 z-50 no-print">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex items-center gap-3">
-                    <div class="bg-blue-600 text-white p-2 rounded-lg text-lg font-bold">
-                        <i class="fa-solid fa-building-columns"></i>
-                    </div>
-                    <div>
-                        <h1 class="text-lg font-bold tracking-wide leading-tight">ග්‍රාම නිලධාරී වසම 759/A</h1>
-                        <p class="text-xs text-slate-400">ගල්හේන - තොරතුරු කළමනාකරණ පද්ධතිය</p>
-                    </div>
-                </div>
-
-                <div class="hidden md:flex items-center space-x-2">
-                    <a href="dashboard.php" class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">
-                        <i class="fa-solid fa-chart-line mr-1.5"></i> Dashboard
-                    </a>
-                    <a href="households_list.php" class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">
-                        <i class="fa-solid fa-house-user mr-1.5"></i> ගෘහ ලැයිස්තුව
-                    </a>
-                    <a href="voters_filters.php" class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">
-                        <i class="fa-solid fa-check-to-slot mr-1.5"></i> ඡන්ද/වයස් ලැයිස්තු
-                    </a>
-                    <a href="search.php" class="px-3 py-2 rounded-md text-sm font-semibold bg-blue-600 text-white shadow-sm">
-                        <i class="fa-solid fa-magnifying-glass mr-1.5"></i> සොයන්න
-                    </a>
-                </div>
-
-                <div>
-                    <a href="step1_household.php" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm px-4 py-2 rounded-lg shadow inline-flex items-center gap-2 transition">
-                        <i class="fa-solid fa-plus"></i>
-                        <span>අලුත් ගෙදරක්</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
-
+    </style>';
+require 'includes/header.php';
+?>
         <!-- Search Header Box -->
         <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mb-6 no-print">
             <h2 class="text-2xl font-bold text-slate-800 mb-2">
@@ -281,11 +230,4 @@ if ($q !== '' || $filter_gender !== '' || $filter_employment !== '') {
             </div>
         <?php endif; ?>
 
-    </main>
-
-    <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500 mt-auto no-print">
-        759/A ගල්හේන ග්‍රාම නිලධාරී වසම් පද්ධතිය &copy; <?php echo date('Y'); ?>
-    </footer>
-
-</body>
-</html>
+<?php require 'includes/footer.php'; ?>

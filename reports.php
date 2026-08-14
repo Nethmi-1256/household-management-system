@@ -75,30 +75,21 @@ try {
     die("වාර්තා දත්ත ලබා ගැනීමට නොහැකි විය: " . $e->getMessage());
 }
 ?>
-<!DOCTYPE html>
-<html lang="si">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reports & Counts - GN 759/A Galhena</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chart.js for Visual Graphs -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<?php
+$active      = 'reports';
+$page_title  = 'වාර්තා සහ ගණනය කිරීම්';
+$page_icon   = 'fa-file-invoice';
+$breadcrumbs = [['label' => 'වාර්තා']];
+$extra_head  = '<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         @media print {
             .no-print { display: none !important; }
             body { background: white; }
             .shadow-sm, .shadow { box-shadow: none !important; }
         }
-    </style>
-</head>
-<body class="bg-slate-100 text-gray-800 font-sans py-8 px-4">
-
-    <div class="max-w-7xl mx-auto">
-        
+    </style>';
+require 'includes/header.php';
+?>
         <!-- Header & Action Controls -->
         <div class="flex flex-col md:flex-row justify-between items-center mb-6 bg-white p-5 rounded-xl shadow-sm border">
             <div>
@@ -106,8 +97,6 @@ try {
                 <p class="text-sm text-gray-500">759/A ගල්හේන ග්‍රාම නිලධාරී වසමේ සමස්ත දත්ත විග්‍රහය</p>
             </div>
             <div class="mt-4 md:mt-0 flex gap-2 no-print">
-                <a href="dashboard.php" class="btn btn-outline-secondary font-semibold">&larr; Dashboard</a>
-                <a href="households_list.php" class="btn btn-outline-primary font-semibold">🏠 ගෘහ ලැයිස්තුව</a>
                 <button onclick="window.print();" class="btn btn-success font-bold">🖨️ Print / Save PDF</button>
             </div>
         </div>
@@ -288,8 +277,6 @@ try {
             </div>
         </div>
 
-    </div>
-
     <!-- Chart.js Setup Script -->
     <script>
         // 1. Age Distribution Doughnut Chart
@@ -337,6 +324,4 @@ try {
             options: { responsive: true, maintainAspectRatio: false }
         });
     </script>
-
-</body>
-</html>
+<?php require 'includes/footer.php'; ?>

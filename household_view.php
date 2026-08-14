@@ -24,16 +24,14 @@ $stmt_m = $pdo->prepare("SELECT * FROM members WHERE household_id = ?");
 $stmt_m->execute([$id]);
 $members = $stmt_m->fetchAll();
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Household Details - <?php echo htmlspecialchars($hh['hh_no']); ?></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 py-8 px-4">
-    <div class="max-w-7xl mx-auto bg-white rounded-xl shadow-md p-6">
+<?php
+$active      = 'households';
+$page_title  = 'ගෘහ අංකය ' . $hh['hh_no'];
+$page_icon   = 'fa-house-user';
+$breadcrumbs = [['label' => 'ගෘහ ලැයිස්තුව', 'url' => 'households_list.php'], ['label' => $hh['hh_no']]];
+require 'includes/header.php';
+?>
+    <div class="gn-card p-6">
         
         <!-- Top Bar -->
         <div class="d-flex justify-content-between align-items-center border-b pb-3 mb-4">
@@ -42,7 +40,7 @@ $members = $stmt_m->fetchAll();
                 <p class="text-gray-500">ලිපිනය: <?php echo htmlspecialchars($hh['address'] ?: 'ගල්හේන'); ?></p>
             </div>
             <div class="flex gap-2">
-                <a href="dashboard.php" class="btn btn-outline-secondary btn-sm">&larr; Dashboard</a>
+                <a href="households_list.php" class="btn btn-outline-secondary btn-sm">&larr; ලැයිස්තුවට</a>
                 <a href="edit_household.php?id=<?php echo $hh['id']; ?>" class="btn btn-warning btn-sm font-semibold">✏️ ගෙදර විස්තර වෙනස් කරන්න</a>
                 <a href="delete_household.php?id=<?php echo $hh['id']; ?>" class="btn btn-danger btn-sm font-semibold" onclick="return confirm('මෙම මුළු ගෘහ විස්තරය සහ ඊට අදාළ සියලුම සාමාජිකයින් මකා දැමීමට විශ්වාසද?');">🗑️ මකා දමන්න</a>
             </div>
@@ -124,5 +122,4 @@ $members = $stmt_m->fetchAll();
             </table>
         </div>
     </div>
-</body>
-</html>
+<?php require 'includes/footer.php'; ?>

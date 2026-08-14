@@ -57,98 +57,13 @@ try {
     die("දත්ත ලබා ගැනීමට නොහැකි විය: " . $e->getMessage());
 }
 ?>
-<!DOCTYPE html>
-<html lang="si">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ගෘහ ලැයිස්තුව - GN 759/A Galhena</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex">
-
-    <!-- Sidebar Navigation (Left) -->
-    <aside class="w-64 bg-slate-900 text-white flex flex-col fixed inset-y-0 left-0 z-50 shadow-xl">
-        <!-- Branding -->
-        <div class="h-20 flex items-center gap-3 px-6 bg-slate-950 border-b border-slate-800">
-            <div class="bg-blue-600 text-white p-2.5 rounded-xl text-lg font-bold shadow">
-                <i class="fa-solid fa-building-columns"></i>
-            </div>
-            <div>
-                <h1 class="text-sm font-bold tracking-wide leading-tight">ග්‍රාම නිලධාරී 759/A</h1>
-                <p class="text-[11px] text-slate-400">ගල්හේන කළමනාකරණය</p>
-            </div>
-        </div>
-
-        <!-- Navigation Links -->
-        <div class="flex-1 px-3 py-6 space-y-1.5 overflow-y-auto">
-            <a href="dashboard.php" class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/70 transition">
-                <i class="fa-solid fa-chart-line w-5 text-center text-base"></i> Dashboard
-            </a>
-            <a href="households_list.php" class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-semibold bg-blue-600 text-white shadow-sm">
-                <i class="fa-solid fa-house-user w-5 text-center text-base"></i> ගෘහ ලැයිස්තුව
-            </a>
-            <a href="voters_filters.php" class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/70 transition">
-                <i class="fa-solid fa-check-to-slot w-5 text-center text-base"></i> ඡන්ද/වයස් ලැයිස්තු
-            </a>
-            <a href="welfare_tracking.php" class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/70 transition">
-                <i class="fa-solid fa-hand-holding-heart w-5 text-center text-base"></i> සහනාධාර
-            </a>
-            <a href="reports.php" class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/70 transition">
-                <i class="fa-solid fa-file-invoice w-5 text-center text-base"></i> වාර්තා & ගණනය කිරීම්
-            </a>
-            <a href="search.php" class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/70 transition">
-                <i class="fa-solid fa-magnifying-glass w-5 text-center text-base"></i> සොයන්න
-            </a>
-        </div>
-
-        <!-- Sidebar Footer Action -->
-        <div class="p-4 border-t border-slate-800 bg-slate-950/50 space-y-2">
-            <a href="step1_household.php" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md flex items-center justify-center gap-2 transition">
-                <i class="fa-solid fa-plus text-sm"></i>
-                <span>අලුත් ගෙදරක් එකතු කරන්න</span>
-            </a>
-            <a href="logout.php" class="w-full bg-rose-600/20 hover:bg-rose-600 text-rose-300 hover:text-white font-bold text-xs px-4 py-2 rounded-xl flex items-center justify-center gap-2 transition">
-                <i class="fa-solid fa-right-from-bracket text-sm"></i>
-                <span>පද්ධතියෙන් ඉවත් වන්න</span>
-            </a>
-        </div>
-    </aside>
-
-    <!-- Main Content Wrapper (Right Side) -->
-    <div class="flex-1 ml-64 flex flex-col min-h-screen">
-        
-        <!-- Top Header / Navbar -->
-        <header class="bg-white border-b border-slate-200 h-20 px-8 flex items-center justify-between sticky top-0 z-40 shadow-sm">
-            <div class="flex items-center gap-3">
-                <span class="text-xs font-bold uppercase tracking-wider bg-blue-50 text-blue-600 px-3 py-1.5 rounded-lg border border-blue-100">
-                    <i class="fa-solid fa-house-user mr-1"></i> කළමනාකරණය
-                </span>
-                <h2 class="text-lg font-bold text-slate-800 hidden sm:block">ග්‍රාම නිලධාරී වසම් තොරතුරු පද්ධතිය</h2>
-            </div>
-
-            <div class="flex items-center gap-4">
-                <!-- Admin Profile Badge -->
-                <div class="flex items-center gap-3 pl-3 border-l border-slate-200">
-                    <div class="w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center shadow-inner">
-                        <span>GN</span>
-                    </div>
-                    <div class="hidden lg:block text-left">
-                        <p class="text-xs font-bold text-slate-800 leading-tight"><?php echo htmlspecialchars($_SESSION['full_name'] ?? 'ග්‍රාම නිලධාරී තැන'); ?></p>
-                        <p class="text-[11px] text-slate-500">වසම 759/A - ගල්හේන</p>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <!-- Main Content Container -->
-        <main class="max-w-7xl w-full mx-auto px-8 py-8 flex-grow">
-            
+<?php
+$active      = 'households';
+$page_title  = 'ගෘහ ලැයිස්තුව';
+$page_icon   = 'fa-house-user';
+$breadcrumbs = [['label' => 'ගෘහ ලැයිස්තුව']];
+require 'includes/header.php';
+?>
             <!-- Page Title Header -->
             <div class="flex flex-col md:flex-row justify-between items-center mb-6 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
                 <div>
@@ -283,13 +198,4 @@ try {
                 </div>
             </div>
 
-        </main>
-
-        <!-- Footer -->
-        <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500">
-            759/A ගල්හේන ග්‍රාම නිලධාරී වසම් පද්ධතිය &copy; <?php echo date('Y'); ?>
-        </footer>
-    </div>
-
-</body>
-</html>
+<?php require 'includes/footer.php'; ?>

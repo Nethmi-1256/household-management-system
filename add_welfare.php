@@ -44,57 +44,15 @@ try {
     $error = "සාමාජිකයින්ගේ දත්ත ලබා ගැනීමේදී දෝෂයක් සිදු විය: " . $e->getMessage();
 }
 ?>
-<!DOCTYPE html>
-<html lang="si">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>නව සහනාධාරයක් ඇතුළත් කිරීම - GN 759/A Galhena</title>
-    
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col">
-
-    <!-- Top Navigation Bar -->
-    <nav class="bg-slate-900 text-white shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex items-center gap-3">
-                    <div class="bg-blue-600 text-white p-2 rounded-lg text-lg font-bold">
-                        <i class="fa-solid fa-building-columns"></i>
-                    </div>
-                    <div>
-                        <h1 class="text-lg font-bold tracking-wide leading-tight">ග්‍රාම නිලධාරී වසම 759/A</h1>
-                        <p class="text-xs text-slate-400">ගල්හේන - තොරතුරු කළමනාකරණ පද්ධතිය</p>
-                    </div>
-                </div>
-
-                <div class="hidden md:flex items-center space-x-2">
-                    <a href="dashboard.php" class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">
-                        <i class="fa-solid fa-chart-line mr-1.5"></i> Dashboard
-                    </a>
-                    <a href="households_list.php" class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">
-                        <i class="fa-solid fa-house-user mr-1.5"></i> ගෘහ ලැයිස්තුව
-                    </a>
-                    <a href="welfare_tracking.php" class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">
-                        <i class="fa-solid fa-hand-holding-heart mr-1.5"></i> සහනාධාර
-                    </a>
-                    <a href="search.php" class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">
-                        <i class="fa-solid fa-magnifying-glass mr-1.5"></i> සොයන්න
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full">
-
+<?php
+$active      = 'welfare';
+$page_title  = 'නව සහනාධාරයක් එකතු කිරීම';
+$page_icon   = 'fa-hand-holding-heart';
+$breadcrumbs = [['label' => 'සහනාධාර', 'url' => 'welfare_tracking.php'], ['label' => 'නව සහනාධාරයක්']];
+require 'includes/header.php';
+?>
         <!-- Back Button -->
+        <div class="max-w-3xl mx-auto">
         <div class="mb-4">
             <a href="welfare_tracking.php" class="text-sm text-slate-500 hover:text-slate-800 font-semibold inline-flex items-center gap-1">
                 <i class="fa-solid fa-arrow-left"></i> සහනාධාර ලැයිස්තුවට ආපසු යන්න
@@ -184,12 +142,6 @@ try {
 
             </form>
         </div>
+        </div>
 
-    </main>
-
-    <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500 mt-auto">
-        759/A ගල්හේන ග්‍රාම නිලධාරී වසම් පද්ධතිය &copy; <?php echo date('Y'); ?>
-    </footer>
-
-</body>
-</html>
+<?php require 'includes/footer.php'; ?>

@@ -100,75 +100,27 @@ try {
     $error = "දත්ත ලබා ගැනීමේදී දෝෂයක් සිදු විය: " . $e->getMessage();
 }
 ?>
-<!DOCTYPE html>
-<html lang="si">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>සහනාධාර ලැයිස්තුව - GN 759/A Galhena</title>
-    
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
+<?php
+$active      = 'welfare';
+$page_title  = 'සහනාධාර ලැයිස්තුව';
+$page_icon   = 'fa-hand-holding-heart';
+$breadcrumbs = [['label' => 'සහනාධාර']];
+$extra_head  = '<style>
         @media print {
             .no-print { display: none !important; }
             body { background: white !important; font-size: 11pt; }
             .card { border: none !important; box-shadow: none !important; }
             .table-responsive { overflow: visible !important; }
         }
-    </style>
-</head>
-<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col">
-
-    <!-- Top Navigation Bar -->
-    <nav class="bg-slate-900 text-white shadow-md sticky top-0 z-50 no-print">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex items-center gap-3">
-                    <div class="bg-blue-600 text-white p-2 rounded-lg text-lg font-bold">
-                        <i class="fa-solid fa-building-columns"></i>
-                    </div>
-                    <div>
-                        <h1 class="text-lg font-bold tracking-wide leading-tight">ග්‍රාම නිලධාරී වසම 759/A</h1>
-                        <p class="text-xs text-slate-400">ගල්හේන - තොරතුරු කළමනාකරණ පද්ධතිය</p>
-                    </div>
-                </div>
-
-                <div class="hidden md:flex items-center space-x-2">
-                    <a href="dashboard.php" class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">
-                        <i class="fa-solid fa-chart-line mr-1.5"></i> Dashboard
-                    </a>
-                    <a href="households_list.php" class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">
-                        <i class="fa-solid fa-house-user mr-1.5"></i> ගෘහ ලැයිස්තුව
-                    </a>
-                    <a href="voters_filters.php" class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">
-                        <i class="fa-solid fa-check-to-slot mr-1.5"></i> ඡන්ද/වයස් ලැයිස්තු
-                    </a>
-                    <a href="welfare_tracking.php" class="px-3 py-2 rounded-md text-sm font-semibold bg-blue-600 text-white shadow-sm">
-                        <i class="fa-solid fa-hand-holding-heart mr-1.5"></i> සහනාධාර
-                    </a>
-                    <a href="search.php" class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition">
-                        <i class="fa-solid fa-magnifying-glass mr-1.5"></i> සොයන්න
-                    </a>
-                </div>
-
-                <div>
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#addWelfareModal" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm px-4 py-2 rounded-lg shadow inline-flex items-center gap-2 transition">
-                        <i class="fa-solid fa-plus"></i>
-                        <span>නව සහනාධාරයක් එක් කරන්න</span>
-                    </button>
-                </div>
-            </div>
+    </style>';
+require 'includes/header.php';
+?>
+        <div class="flex justify-end -mt-2 mb-4 no-print">
+            <button type="button" data-bs-toggle="modal" data-bs-target="#addWelfareModal" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm px-4 py-2 rounded-lg shadow inline-flex items-center gap-2 transition">
+                <i class="fa-solid fa-plus"></i>
+                <span>නව සහනාධාරයක් එක් කරන්න</span>
+            </button>
         </div>
-    </nav>
-
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
-
         <!-- Header Title -->
         <div class="flex justify-between items-center mb-6">
             <div>
@@ -328,7 +280,6 @@ try {
             </div>
         </div>
 
-    </main>
 
     <!-- Modal: Add Welfare Record -->
     <div class="modal fade" id="addWelfareModal" tabindex="-1" aria-hidden="true">
@@ -391,5 +342,4 @@ try {
 
     <!-- Bootstrap 5 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+<?php require 'includes/footer.php'; ?>

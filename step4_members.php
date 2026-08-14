@@ -71,16 +71,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Step 4 - Member Details | GN 759/A Galhena</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 py-8 px-4">
-    <div class="max-w-6xl mx-auto bg-white rounded-xl shadow-md p-6">
+<?php
+$active      = 'households';
+$page_title  = 'නව ගෘහයක් එකතු කිරීම';
+$page_icon   = 'fa-plus';
+$breadcrumbs = [['label' => 'ගෘහ ලැයිස්තුව', 'url' => 'households_list.php'], ['label' => 'Step 4']];
+require 'includes/header.php';
+?>
+    <div class="max-w-6xl mx-auto gn-card p-6">
         <div class="mb-4 text-center">
             <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded">Final Step 4 of 4</span>
             <h2 class="text-2xl font-bold mt-2 text-gray-800">සාමාජිකයින්ගේ විස්තර ඇතුළත් කිරීම (එකතුව: <?php echo $count; ?>)</h2>
@@ -221,5 +219,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </form>
     </div>
-</body>
-</html>
+<?php require 'includes/footer.php'; ?>

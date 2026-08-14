@@ -1,0 +1,71 @@
+/* ==========================================================
+   GN 759/A Galhena — Shared System Theme
+   Applies on top of Tailwind (CDN) + Bootstrap 5
+   ========================================================== */
+
+:root {
+    --gn-primary: #2563eb;
+    --gn-primary-dark: #1d4ed8;
+    --gn-sidebar: #0f172a;
+}
+
+body {
+    font-family: 'Inter', 'Noto Sans Sinhala', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Slim, tidy scrollbars for the sidebar / dropdowns */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, .5); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(100, 116, 139, .7); }
+
+/* Bootstrap form controls tuned to match the Tailwind card look */
+.form-control, .form-select {
+    border-radius: .75rem;
+    border-color: #e2e8f0;
+    font-size: .875rem;
+    padding: .55rem .8rem;
+}
+.form-control:focus, .form-select:focus {
+    border-color: var(--gn-primary);
+    box-shadow: 0 0 0 .2rem rgba(37, 99, 235, .15);
+}
+.form-label { font-size: .75rem; font-weight: 700; color: #475569; margin-bottom: .3rem; }
+
+.btn { border-radius: .7rem; font-weight: 600; }
+.btn-primary { background-color: var(--gn-primary); border-color: var(--gn-primary); }
+.btn-primary:hover { background-color: var(--gn-primary-dark); border-color: var(--gn-primary-dark); }
+
+.table-hover tbody tr { transition: background-color .12s ease; }
+
+/* Cards used across every page */
+.gn-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, .04);
+}
+
+/* Sidebar active-link glow */
+#appSidebar a.bg-blue-600 { box-shadow: 0 4px 12px rgba(37, 99, 235, .35); }
+
+/* Small fade-in for page content */
+main { animation: gnFadeIn .25s ease; }
+@keyframes gnFadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Print - hide chrome, show only the report content */
+@media print {
+    .no-print { display: none !important; }
+    #appSidebar, #sidebarOverlay { display: none !important; }
+    .lg\:ml-64 { margin-left: 0 !important; }
+    body { background: #fff !important; }
+    main { max-width: 100% !important; animation: none !important; }
+    .gn-card, .card { border: none !important; box-shadow: none !important; }
+}
+
+@media (max-width: 1023px) {
+    .lg\:ml-64 { margin-left: 0 !important; }
+}

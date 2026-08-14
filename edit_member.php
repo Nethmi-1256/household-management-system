@@ -60,16 +60,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Edit Member - <?php echo htmlspecialchars($m['full_name']); ?></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 py-8 px-4">
-    <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6">
+<?php
+$active      = 'households';
+$page_title  = 'සාමාජික විස්තර වෙනස් කිරීම';
+$page_icon   = 'fa-pen-to-square';
+$breadcrumbs = [['label' => 'ගෘහ ලැයිස්තුව', 'url' => 'households_list.php'], ['label' => 'Edit Member']];
+require 'includes/header.php';
+?>
+    <div class="max-w-4xl mx-auto gn-card p-6">
         <h2 class="text-2xl font-bold mb-4 text-gray-800 border-b pb-2">සාමාජික විස්තර වෙනස් කිරීම (Edit Member)</h2>
 
         <?php if ($error): ?>
@@ -197,5 +195,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </form>
     </div>
-</body>
-</html>
+<?php require 'includes/footer.php'; ?>
