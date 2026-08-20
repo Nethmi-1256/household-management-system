@@ -26,24 +26,42 @@ $page_icon   = 'fa-plus';
 $breadcrumbs = [['label' => 'ගෘහ ලැයිස්තුව', 'url' => 'households_list.php'], ['label' => 'Step 1']];
 require 'includes/header.php';
 ?>
-    <div class="max-w-md mx-auto gn-card p-6">
-        <div class="mb-4 text-center">
-            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">Step 1 of 2</span>
-            <h2 class="text-2xl font-bold mt-2 text-gray-800">ගෘහ විස්තරය</h2>
+    <div class="max-w-md mx-auto">
+        <!-- Step Progress Indicator -->
+        <div class="flex items-center justify-center gap-2 mb-6" data-reveal>
+            <?php for ($i = 1; $i <= 4; $i++): $isDone = $i < 1; $isNow = $i === 1; ?>
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition
+                        <?php echo $isNow ? 'gn-badge-blue gn-badge-grad text-white' : 'bg-slate-100 text-slate-400'; ?>">
+                        <?php echo $i; ?>
+                    </div>
+                    <?php if ($i < 4): ?><div class="w-8 h-0.5 bg-slate-200"></div><?php endif; ?>
+                </div>
+            <?php endfor; ?>
         </div>
 
-        <form method="POST" action="">
-            <div class="mb-4">
-                <label class="form-label font-semibold">ගෘහ අංකය (Household No) *</label>
-                <input type="text" name="hh_no" class="form-control" required placeholder="උදා: 12/A">
-            </div>
-            
-            <div class="mb-5">
-                <label class="form-label font-semibold">ලිපිනය (Address)</label>
-                <textarea name="address" class="form-control" rows="2" placeholder="ලිපිනය ඇතුළත් කරන්න"></textarea>
+        <div class="gn-hover-lift bg-white rounded-2xl border border-slate-200 shadow-sm p-6" data-reveal>
+            <div class="mb-5 text-center">
+                <span class="gn-badge-blue gn-badge-grad text-[10px] font-bold px-3 py-1 rounded-full">Step 1 of 4</span>
+                <h2 class="text-xl font-bold mt-3 text-slate-800 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-house-circle-check text-blue-600"></i> ගෘහ විස්තරය
+                </h2>
+                <p class="text-xs text-slate-500 mt-1">නව ගෘහයක අංකය සහ ලිපිනය ඇතුළත් කරන්න</p>
             </div>
 
-            <button type="submit" class="btn btn-primary w-100 font-bold">ඊළඟ පියවර &rarr;</button>
-        </form>
+            <form method="POST" action="">
+                <div class="mb-4">
+                    <label class="form-label"><i class="fa-solid fa-hashtag text-blue-500 mr-1"></i>ගෘහ අංකය (Household No) *</label>
+                    <input type="text" name="hh_no" class="form-control" required placeholder="උදා: 12/A">
+                </div>
+
+                <div class="mb-5">
+                    <label class="form-label"><i class="fa-solid fa-location-dot text-rose-500 mr-1"></i>ලිපිනය (Address)</label>
+                    <textarea name="address" class="form-control" rows="2" placeholder="ලිපිනය ඇතුළත් කරන්න"></textarea>
+                </div>
+
+                <button type="submit" class="gn-ripple gn-shine btn btn-primary w-100 font-bold py-2.5">ඊළඟ පියවර <i class="fa-solid fa-arrow-right ml-1"></i></button>
+            </form>
+        </div>
     </div>
 <?php require 'includes/footer.php'; ?>

@@ -15,7 +15,21 @@ set_time_limit(300);
 $csvFile = 'data.csv';
 
 if (!file_exists($csvFile)) {
-    die("<div style='color:red; font-weight:bold;'>Error: '$csvFile' ගොනුව සොයා ගැනීමට නොහැකි විය. කරුණාකර Excel file එක data.csv ලෙස Save කර project folder එකට එක් කරන්න.</div>");
+    echo '<!DOCTYPE html><html lang="si"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Import Error</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/theme.css"></head>
+    <body class="bg-slate-100 min-h-screen flex items-center justify-center px-4">
+        <div class="max-w-md w-full bg-white rounded-2xl shadow-xl border border-rose-100 p-8 text-center">
+            <div class="gn-badge-pink gn-badge-grad w-16 h-16 text-2xl mx-auto mb-4"><i class="fa-solid fa-file-circle-exclamation"></i></div>
+            <h2 class="text-lg font-bold text-slate-800 mb-2">CSV ගොනුව සොයාගත නොහැක</h2>
+            <p class="text-sm text-slate-500 mb-6">"' . htmlspecialchars($csvFile) . '" ගොනුව සොයා ගැනීමට නොහැකි විය. කරුණාකර Excel file එක <code class="bg-slate-100 px-1.5 py-0.5 rounded">data.csv</code> ලෙස Save කර project folder එකට එක් කරන්න.</p>
+            <a href="dashboard.php" class="gn-ripple inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold px-5 py-2.5 rounded-xl transition"><i class="fa-solid fa-arrow-left"></i> Dashboard වෙත ආපසු</a>
+        </div>
+    </body></html>';
+    exit;
 }
 
 $handle = fopen($csvFile, "r");
@@ -168,16 +182,48 @@ if ($handle !== FALSE) {
         $pdo->commit();
         fclose($handle);
 
-        echo "<div style='font-family:sans-serif; padding:20px; background:#e6fffa; border:1px solid #38b2ac; border-radius:8px; max-width:600px; margin:40px auto;'>";
-        echo "<h2 style='color:#234e52; margin-top:0;'>🎉 Import සාර්ථකයි!</h2>";
-        echo "<p><strong>එකතු කරන ලද ගෘහ සංඛ්‍යාව:</strong> $hh_count</p>";
-        echo "<p><strong>එකතු කරන ලද සාමාජිකයින් සංඛ්‍යාව:</strong> $success_count</p>";
-        echo "<a href='dashboard.php' style='display:inline-block; padding:10px 20px; background:#319795; color:#fff; text-decoration:none; border-radius:5px; font-weight:bold;'>Dashboard වෙත යන්න &rarr;</a>";
-        echo "</div>";
+        echo '<!DOCTYPE html><html lang="si"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Import Success</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="assets/theme.css"></head>
+        <body class="bg-slate-100 min-h-screen flex items-center justify-center px-4">
+            <div class="max-w-md w-full bg-white rounded-2xl shadow-xl border border-emerald-100 p-8 text-center gn-hover-lift">
+                <div class="gn-badge-emerald gn-badge-grad w-16 h-16 text-2xl mx-auto mb-4 gn-float"><i class="fa-solid fa-circle-check"></i></div>
+                <h2 class="text-xl font-bold text-slate-800 mb-1">Import සාර්ථකයි! 🎉</h2>
+                <p class="text-xs text-slate-500 mb-5">CSV දත්ත සාර්ථකව පද්ධතියට ඇතුළත් කරන ලදී.</p>
+                <div class="grid grid-cols-2 gap-3 mb-6">
+                    <div class="bg-blue-50 rounded-xl p-4">
+                        <div class="text-2xl font-extrabold text-blue-700">' . (int) $hh_count . '</div>
+                        <div class="text-[10px] font-bold uppercase tracking-wide text-blue-500 mt-1">ගෘහ</div>
+                    </div>
+                    <div class="bg-emerald-50 rounded-xl p-4">
+                        <div class="text-2xl font-extrabold text-emerald-700">' . (int) $success_count . '</div>
+                        <div class="text-[10px] font-bold uppercase tracking-wide text-emerald-500 mt-1">සාමාජිකයින්</div>
+                    </div>
+                </div>
+                <a href="dashboard.php" class="gn-ripple gn-shine inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold px-5 py-2.5 rounded-xl transition shadow-lg shadow-blue-500/20">
+                    Dashboard වෙත යන්න <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </body></html>';
 
     } catch (Exception $e) {
         $pdo->rollBack();
-        echo "<div style='color:red; font-weight:bold;'>Error importing data: " . $e->getMessage() . "</div>";
+        echo '<!DOCTYPE html><html lang="si"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Import Error</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="assets/theme.css"></head>
+        <body class="bg-slate-100 min-h-screen flex items-center justify-center px-4">
+            <div class="max-w-md w-full bg-white rounded-2xl shadow-xl border border-rose-100 p-8 text-center">
+                <div class="gn-badge-pink gn-badge-grad w-16 h-16 text-2xl mx-auto mb-4"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                <h2 class="text-lg font-bold text-slate-800 mb-2">Import දෝෂයක්</h2>
+                <p class="text-xs text-slate-500 mb-6">' . htmlspecialchars($e->getMessage()) . '</p>
+                <a href="dashboard.php" class="gn-ripple inline-flex items-center gap-2 bg-slate-700 hover:bg-slate-800 text-white text-sm font-bold px-5 py-2.5 rounded-xl transition"><i class="fa-solid fa-arrow-left"></i> Dashboard වෙත ආපසු</a>
+            </div>
+        </body></html>';
     }
 }
 ?>

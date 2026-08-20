@@ -65,22 +65,40 @@ $page_icon   = 'fa-plus';
 $breadcrumbs = [['label' => 'ගෘහ ලැයිස්තුව', 'url' => 'households_list.php'], ['label' => 'Step 2']];
 require 'includes/header.php';
 ?>
-    <div class="max-w-4xl mx-auto gn-card p-6">
-        <div class="mb-4 text-center">
-            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">Step 2 of 4</span>
-            <h2 class="text-2xl font-bold mt-2 text-gray-800">නිවසේ ව්‍යුහය සහ ද්‍රව්‍ය විස්තර</h2>
-            <p class="text-sm text-gray-500">ගෘහ අංකය: <strong><?php echo htmlspecialchars($_SESSION['step1']['hh_no']); ?></strong></p>
+    <div class="max-w-4xl mx-auto">
+        <!-- Step Progress Indicator -->
+        <div class="flex items-center justify-center gap-2 mb-6" data-reveal>
+            <?php for ($i = 1; $i <= 4; $i++): $isDone = $i < 2; $isNow = $i === 2; ?>
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition
+                        <?php echo $isNow ? 'gn-badge-blue gn-badge-grad text-white' : ($isDone ? 'gn-badge-emerald gn-badge-grad text-white' : 'bg-slate-100 text-slate-400'); ?>">
+                        <?php echo $isDone ? '<i class="fa-solid fa-check text-[10px]"></i>' : $i; ?>
+                    </div>
+                    <?php if ($i < 4): ?><div class="w-8 h-0.5 <?php echo $isDone ? 'bg-emerald-300' : 'bg-slate-200'; ?>"></div><?php endif; ?>
+                </div>
+            <?php endfor; ?>
+        </div>
+
+        <div class="gn-hover-lift bg-white rounded-2xl border border-slate-200 shadow-sm p-6" data-reveal>
+        <div class="mb-5 text-center">
+            <span class="gn-badge-blue gn-badge-grad text-[10px] font-bold px-3 py-1 rounded-full">Step 2 of 4</span>
+            <h2 class="text-xl font-bold mt-3 text-slate-800 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-trowel-bricks text-blue-600"></i> නිවසේ ව්‍යුහය සහ ද්‍රව්‍ය විස්තර
+            </h2>
+            <p class="text-xs text-slate-500 mt-1">ගෘහ අංකය: <strong class="text-blue-700"><?php echo htmlspecialchars($_SESSION['step1']['hh_no']); ?></strong></p>
         </div>
 
         <?php if (!empty($error)): ?>
-            <div class="alert alert-danger"><?php echo $error; ?></div>
+            <div class="mb-5 bg-rose-50 border border-rose-200 text-rose-700 text-xs px-4 py-3 rounded-xl flex items-center gap-2">
+                <i class="fa-solid fa-triangle-exclamation"></i><span><?php echo $error; ?></span>
+            </div>
         <?php endif; ?>
 
         <form method="POST" action="">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                 
                 <div class="col-span-2 md:col-span-1">
-                    <label class="form-label font-semibold">Housing Structure</label>
+                    <label class="form-label"><i class="fa-solid fa-building text-indigo-500 mr-1"></i>Housing Structure</label>
                     <select name="housing_structure" class="form-select" required>
                         <option value="Single house - single storeyed">Single house - single storeyed</option>
                         <option value="Single house - two storeyed">Single house - two storeyed</option>
@@ -96,7 +114,7 @@ require 'includes/header.php';
                 </div>
 
                 <div class="col-span-2 md:col-span-1">
-                    <label class="form-label font-semibold">Roof Material</label>
+                    <label class="form-label"><i class="fa-solid fa-house-flag text-amber-500 mr-1"></i>Roof Material</label>
                     <select name="roof_material" class="form-select" required>
                         <option value="Tile">Tile</option>
                         <option value="Asbestos">Asbestos</option>
@@ -110,7 +128,7 @@ require 'includes/header.php';
                 </div>
 
                 <div class="col-span-2 md:col-span-1">
-                    <label class="form-label font-semibold">Wall Material</label>
+                    <label class="form-label"><i class="fa-solid fa-border-all text-violet-500 mr-1"></i>Wall Material</label>
                     <select name="wall_material" class="form-select" required>
                         <option value="Bricks">Bricks</option>
                         <option value="Cement block">Cement block</option>
@@ -127,7 +145,7 @@ require 'includes/header.php';
                 </div>
 
                 <div class="col-span-2 md:col-span-1">
-                    <label class="form-label font-semibold">Floor Material</label>
+                    <label class="form-label"><i class="fa-solid fa-layer-group text-pink-500 mr-1"></i>Floor Material</label>
                     <select name="floor_material" class="form-select" required>
                         <option value="Cement">Cement</option>
                         <option value="Terrazzo/Tile/Granite/Wood (Finished)">Terrazzo/Tile/Granite/Wood (Finished)</option>
@@ -141,7 +159,7 @@ require 'includes/header.php';
                 </div>
 
                 <div class="col-span-2">
-                    <label class="form-label font-semibold">Water Source</label>
+                    <label class="form-label"><i class="fa-solid fa-droplet text-cyan-500 mr-1"></i>Water Source</label>
                     <select name="water_source" class="form-select" required>
                         <option value="Water Board">Water Board (ජල සම්පාදන මණ්ඩලය)</option>
                         <option value="Well">Well (ළිං ජලය)</option>
@@ -152,10 +170,11 @@ require 'includes/header.php';
 
             </div>
 
-            <div class="d-flex justify-content-between mt-4">
-                <a href="step1_household.php" class="btn btn-secondary px-4">&larr; Back</a>
-                <button type="submit" class="btn btn-primary px-5 font-bold">ඊළඟ පියවර (Next Step) &rarr;</button>
+            <div class="d-flex justify-content-between mt-4 pt-3 border-t border-slate-100">
+                <a href="step1_household.php" class="gn-ripple btn btn-secondary px-4">&larr; Back</a>
+                <button type="submit" class="gn-ripple gn-shine btn btn-primary px-5 font-bold">ඊළඟ පියවර (Next Step) <i class="fa-solid fa-arrow-right ml-1"></i></button>
             </div>
         </form>
+        </div>
     </div>
 <?php require 'includes/footer.php'; ?>

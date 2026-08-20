@@ -78,33 +78,52 @@ $page_icon   = 'fa-plus';
 $breadcrumbs = [['label' => 'ගෘහ ලැයිස්තුව', 'url' => 'households_list.php'], ['label' => 'Step 4']];
 require 'includes/header.php';
 ?>
-    <div class="max-w-6xl mx-auto gn-card p-6">
-        <div class="mb-4 text-center">
-            <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded">Final Step 4 of 4</span>
-            <h2 class="text-2xl font-bold mt-2 text-gray-800">සාමාජිකයින්ගේ විස්තර ඇතුළත් කිරීම (එකතුව: <?php echo $count; ?>)</h2>
+    <div class="max-w-6xl mx-auto">
+        <!-- Step Progress Indicator -->
+        <div class="flex items-center justify-center gap-2 mb-6" data-reveal>
+            <?php for ($i = 1; $i <= 4; $i++): $isDone = $i < 4; $isNow = $i === 4; ?>
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition
+                        <?php echo $isNow ? 'gn-badge-emerald gn-badge-grad text-white' : ($isDone ? 'gn-badge-emerald gn-badge-grad text-white' : 'bg-slate-100 text-slate-400'); ?>">
+                        <?php echo $isDone ? '<i class="fa-solid fa-check text-[10px]"></i>' : $i; ?>
+                    </div>
+                    <?php if ($i < 4): ?><div class="w-8 h-0.5 bg-emerald-300"></div><?php endif; ?>
+                </div>
+            <?php endfor; ?>
+        </div>
+
+        <div class="relative overflow-hidden gn-gradient-bg gn-dot-grid p-6 rounded-2xl shadow-lg mb-6" data-reveal>
+            <div class="gn-blob b1" style="width:130px;height:130px;background:#34d399;top:-30px;right:40px;"></div>
+            <span class="relative z-10 gn-glass text-[10px] font-bold text-white px-3 py-1 rounded-full inline-flex items-center gap-1"><i class="fa-solid fa-flag-checkered"></i> Final Step 4 of 4</span>
+            <h2 class="relative z-10 text-xl font-bold text-white mt-3 flex items-center gap-2">
+                <i class="fa-solid fa-users"></i> සාමාජිකයින්ගේ විස්තර ඇතුළත් කිරීම <span class="gn-badge-blue gn-badge-grad text-xs px-2.5 py-1">එකතුව: <?php echo $count; ?></span>
+            </h2>
         </div>
 
         <form method="POST" action="">
             <?php for ($i = 0; $i < $count; $i++): ?>
-                <div class="border rounded-lg p-4 mb-6 bg-slate-50 shadow-sm">
-                    <h5 class="font-bold text-blue-700 mb-3 border-b pb-2">සාමාජිකයා #<?php echo $i + 1; ?></h5>
+                <div class="gn-hover-lift bg-white rounded-2xl border border-slate-200 p-5 mb-6 shadow-sm" data-reveal>
+                    <h5 class="font-bold text-slate-800 mb-4 border-b border-slate-100 pb-3 flex items-center gap-2">
+                        <span class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 text-white text-xs flex items-center justify-center shrink-0"><?php echo $i + 1; ?></span>
+                        සාමාජිකයා #<?php echo $i + 1; ?>
+                    </h5>
                     
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-3 mb-4">
                         <div class="md:col-span-2">
-                            <label class="form-label font-semibold">සම්පූර්ණ නම *</label>
+                            <label class="form-label"><i class="fa-solid fa-signature text-blue-500 mr-1"></i>සම්පූර්ණ නම *</label>
                             <input type="text" name="full_name[]" class="form-control" placeholder="නම ඇතුළත් කරන්න" required>
                         </div>
                         <div>
-                            <label class="form-label font-semibold">ජා.හැ. අංකය (NIC)</label>
+                            <label class="form-label"><i class="fa-solid fa-id-card text-slate-500 mr-1"></i>ජා.හැ. අංකය (NIC)</label>
                             <input type="text" name="nic[]" class="form-control" placeholder="123456789V">
                         </div>
                         <div>
-                            <label class="form-label font-semibold">උපන් දිනය *</label>
+                            <label class="form-label"><i class="fa-solid fa-cake-candles text-pink-500 mr-1"></i>උපන් දිනය *</label>
                             <input type="date" name="dob[]" class="form-control" required>
                         </div>
 
                         <div>
-                            <label class="form-label font-semibold">ගෘහ මූලිකයාට ඇති සම්බන්ධය</label>
+                            <label class="form-label"><i class="fa-solid fa-people-arrows text-indigo-500 mr-1"></i>ගෘහ මූලිකයාට ඇති සම්බන්ධය</label>
                             <select name="relationship[]" class="form-select">
                                 <option value="Head">ගෘහ මූලිකයා (Head)</option>
                                 <option value="Spouse">ස්වාමිපුරුෂයා / බිරිඳ</option>
@@ -117,7 +136,7 @@ require 'includes/header.php';
                         </div>
 
                         <div>
-                            <label class="form-label font-semibold">විවාහක තත්ත්වය</label>
+                            <label class="form-label"><i class="fa-solid fa-ring text-amber-500 mr-1"></i>විවාහක තත්ත්වය</label>
                             <select name="marital_status[]" class="form-select">
                                 <option value="Unmarried">අවිවාහක (Unmarried)</option>
                                 <option value="Married">විවාහක (Married)</option>
@@ -128,7 +147,7 @@ require 'includes/header.php';
                         </div>
 
                         <div>
-                            <label class="form-label font-semibold">ස්ත්‍රී / පුරුෂ භාවය</label>
+                            <label class="form-label"><i class="fa-solid fa-venus-mars text-violet-500 mr-1"></i>ස්ත්‍රී / පුරුෂ භාවය</label>
                             <select name="gender[]" class="form-select">
                                 <option value="Male">පුරුෂ (Male)</option>
                                 <option value="Female">ස්ත්‍රී (Female)</option>
@@ -136,7 +155,7 @@ require 'includes/header.php';
                         </div>
 
                         <div>
-                            <label class="form-label font-semibold">ජාතිය (Nationality)</label>
+                            <label class="form-label"><i class="fa-solid fa-flag text-cyan-500 mr-1"></i>ජාතිය (Nationality)</label>
                             <select name="nationality[]" class="form-select">
                                 <option value="Sinhala">Sinhala (සිංහල)</option>
                                 <option value="Tamil">Tamil (දෙමළ)</option>
@@ -147,7 +166,7 @@ require 'includes/header.php';
                         </div>
 
                         <div>
-                            <label class="form-label font-semibold">ආගම (Religion)</label>
+                            <label class="form-label"><i class="fa-solid fa-place-of-worship text-emerald-500 mr-1"></i>ආගම (Religion)</label>
                             <select name="religion[]" class="form-select">
                                 <option value="Buddhism">බෞද්ධ (Buddhism)</option>
                                 <option value="Hinduism">හින්දු (Hinduism)</option>
@@ -159,7 +178,7 @@ require 'includes/header.php';
                         </div>
 
                         <div>
-                            <label class="form-label font-semibold">අධ්‍යාපන මට්ටම</label>
+                            <label class="form-label"><i class="fa-solid fa-graduation-cap text-blue-500 mr-1"></i>අධ්‍යාපන මට්ටම</label>
                             <select name="educationLevel[]" class="form-select">
                                 <option value="No Schooling">No Schooling</option>
                                 <option value="Primary (Grade 1-5)">Primary (Grade 1-5)</option>
@@ -176,7 +195,7 @@ require 'includes/header.php';
                         </div>
 
                         <div>
-                            <label class="form-label font-semibold">රැකියා තත්ත්වය</label>
+                            <label class="form-label"><i class="fa-solid fa-briefcase text-amber-500 mr-1"></i>රැකියා තත්ත්වය</label>
                             <select name="employment_status[]" class="form-select">
                                 <option value="Government">Government</option>
                                 <option value="Private">Private</option>
@@ -191,31 +210,45 @@ require 'includes/header.php';
                         </div>
 
                         <div>
-                            <label class="form-label font-semibold">රැකියාව / තනතුර (Occupation)</label>
+                            <label class="form-label"><i class="fa-solid fa-user-tie text-slate-500 mr-1"></i>රැකියාව / තනතුර (Occupation)</label>
                             <input type="text" name="occupation[]" class="form-control" placeholder="උදා: ගුරු, රියදුරු, වෙළඳ">
                         </div>
                     </div>
 
                     <!-- Assets & Vehicles -->
-                    <div class="bg-white p-3 rounded border">
-                        <div class="font-bold text-xs text-gray-600 mb-2">සාමාජිකයා සතු උපකරණ සහ වාහන විස්තර:</div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <div class="font-bold text-xs text-slate-600 mb-3 flex items-center gap-1.5">
+                            <i class="fa-solid fa-boxes-stacked text-indigo-500"></i>සාමාජිකයා සතු උපකරණ සහ වාහන විස්තර:
+                        </div>
                         <div class="grid grid-cols-2 md:grid-cols-5 gap-2 text-sm">
-                            <label><input type="checkbox" name="has_radio[<?php echo $i; ?>]" value="1"> Radio</label>
-                            <label><input type="checkbox" name="has_tv[<?php echo $i; ?>]" value="1"> TV</label>
-                            <label><input type="checkbox" name="has_land_phone[<?php echo $i; ?>]" value="1"> Land Phone</label>
-                            <label><input type="checkbox" name="has_smart_phone[<?php echo $i; ?>]" value="1"> Smart Phone</label>
-                            <label><input type="checkbox" name="has_laptop[<?php echo $i; ?>]" value="1"> Laptop</label>
-                            <label><input type="checkbox" name="has_threewheel[<?php echo $i; ?>]" value="1"> Three Wheeler</label>
-                            <label><input type="checkbox" name="has_motorcycle[<?php echo $i; ?>]" value="1"> Motor Cycle</label>
-                            <label><input type="checkbox" name="has_bicycle[<?php echo $i; ?>]" value="1"> Bicycle</label>
-                            <label><input type="checkbox" name="has_other_vehicle[<?php echo $i; ?>]" value="1"> Other Vehicle</label>
+                            <?php
+                                $__assets_step4 = [
+                                    ['has_radio', 'fa-radio', 'Radio'],
+                                    ['has_tv', 'fa-tv', 'TV'],
+                                    ['has_land_phone', 'fa-phone', 'Land Phone'],
+                                    ['has_smart_phone', 'fa-mobile-screen-button', 'Smart Phone'],
+                                    ['has_laptop', 'fa-laptop', 'Laptop'],
+                                    ['has_threewheel', 'fa-taxi', 'Three Wheeler'],
+                                    ['has_motorcycle', 'fa-motorcycle', 'Motor Cycle'],
+                                    ['has_bicycle', 'fa-person-biking', 'Bicycle'],
+                                    ['has_other_vehicle', 'fa-car', 'Other Vehicle'],
+                                ];
+                                foreach ($__assets_step4 as $af):
+                                    [$field, $icon, $label] = $af;
+                            ?>
+                            <label class="flex items-center gap-1.5 bg-white border border-slate-200 rounded-lg px-2.5 py-2 cursor-pointer hover:border-blue-300 transition">
+                                <input type="checkbox" name="<?php echo $field; ?>[<?php echo $i; ?>]" value="1" class="form-check-input mt-0">
+                                <i class="fa-solid <?php echo $icon; ?> text-slate-400 text-xs"></i>
+                                <span class="text-xs font-medium text-slate-600"><?php echo $label; ?></span>
+                            </label>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
             <?php endfor; ?>
 
             <div class="d-flex justify-content-end gap-2 mt-4">
-                <button type="submit" class="btn btn-success btn-lg px-5 font-bold">සියලු දත්ත සුරකින්න (Save All Data) &check;</button>
+                <button type="submit" class="gn-ripple gn-shine btn btn-success btn-lg px-5 font-bold"><i class="fa-solid fa-floppy-disk mr-2"></i>සියලු දත්ත සුරකින්න (Save All Data)</button>
             </div>
         </form>
     </div>

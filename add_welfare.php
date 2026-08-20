@@ -60,9 +60,9 @@ require 'includes/header.php';
         </div>
 
         <!-- Form Box -->
-        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8">
+        <div class="gn-hover-lift bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8" data-reveal>
             <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
-                <div class="bg-emerald-100 text-emerald-700 p-3 rounded-xl text-xl font-bold">
+                <div class="gn-badge-emerald gn-badge-grad gn-float p-3 w-14 h-14 text-xl">
                     <i class="fa-solid fa-hand-holding-heart"></i>
                 </div>
                 <div>
@@ -83,7 +83,7 @@ require 'includes/header.php';
                 
                 <!-- Member Selection -->
                 <div class="col-12">
-                    <label class="form-label font-bold text-xs text-slate-700">ප්‍රතිලාභී සාමාජිකයා තෝරන්න *</label>
+                    <label class="form-label font-bold text-xs text-slate-700"><i class="fa-solid fa-user text-blue-500 mr-1"></i>ප්‍රතිලාභී සාමාජිකයා තෝරන්න *</label>
                     <select name="member_id" class="form-select" required>
                         <option value="">-- සාමාජිකයා තෝරන්න --</option>
                         <?php foreach ($all_members as $m): ?>
@@ -96,7 +96,7 @@ require 'includes/header.php';
 
                 <!-- Welfare Type -->
                 <div class="col-md-6">
-                    <label class="form-label font-bold text-xs text-slate-700">සහනාධාර වර්ගය *</label>
+                    <label class="form-label font-bold text-xs text-slate-700"><i class="fa-solid fa-hand-holding-heart text-emerald-500 mr-1"></i>සහනාධාර වර්ගය *</label>
                     <select name="welfare_type" class="form-select" required>
                         <option value="අස්වැසුම">අස්වැසුම</option>
                         <option value="සමෘද්ධි">සමෘද්ධි</option>
@@ -109,7 +109,7 @@ require 'includes/header.php';
 
                 <!-- Monthly Amount -->
                 <div class="col-md-6">
-                    <label class="form-label font-bold text-xs text-slate-700">මාසික දීමනා මුදල (රු.)</label>
+                    <label class="form-label font-bold text-xs text-slate-700"><i class="fa-solid fa-coins text-amber-500 mr-1"></i>මාසික දීමනා මුදල (රු.)</label>
                     <div class="input-group">
                         <span class="input-group-text bg-slate-100 text-slate-500 font-bold">Rs.</span>
                         <input type="number" step="0.01" name="amount" class="form-control" placeholder="0.00">
@@ -118,7 +118,7 @@ require 'includes/header.php';
 
                 <!-- Status -->
                 <div class="col-md-6">
-                    <label class="form-label font-bold text-xs text-slate-700">තත්ත්වය (Status)</label>
+                    <label class="form-label font-bold text-xs text-slate-700"><i class="fa-solid fa-toggle-on text-cyan-500 mr-1"></i>තත්ත්වය (Status)</label>
                     <select name="status" class="form-select">
                         <option value="සක්‍රීය">සක්‍රීය</option>
                         <option value="අත්හිටුවා ඇත">අත්හිටුවා ඇත</option>
@@ -128,14 +128,14 @@ require 'includes/header.php';
 
                 <!-- Remarks -->
                 <div class="col-md-6">
-                    <label class="form-label font-bold text-xs text-slate-700">විශේෂ සටහන්</label>
+                    <label class="form-label font-bold text-xs text-slate-700"><i class="fa-solid fa-note-sticky text-violet-500 mr-1"></i>විශේෂ සටහන්</label>
                     <input type="text" name="remarks" class="form-control" placeholder="උදා: ගිණුම් අංකය, කාණ්ඩය...">
                 </div>
 
                 <!-- Action Buttons -->
                 <div class="col-12 flex justify-end gap-3 pt-4 border-t border-slate-100">
-                    <a href="welfare_tracking.php" class="btn btn-outline-secondary font-bold px-4">අවලංගු කරන්න</a>
-                    <button type="submit" class="btn btn-emerald-600 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5">
+                    <a href="welfare_tracking.php" class="gn-ripple btn btn-outline-secondary font-bold px-4">අවලංගු කරන්න</a>
+                    <button type="submit" class="gn-ripple gn-shine btn bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5">
                         <i class="fa-solid fa-floppy-disk mr-1.5"></i> සුරකින්න
                     </button>
                 </div>
