@@ -9,6 +9,9 @@
         </footer>
     </div>
 
+    <!-- Shared Theme JS (count-up, reveal, ripple, tilt, toast) -->
+    <script src="assets/theme.js"></script>
+
     <!-- Shared UI Scripts (sidebar, dropdowns, alerts) -->
     <script>
         (function () {

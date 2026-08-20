@@ -60,19 +60,24 @@ require 'includes/header.php';
 ?>
             
             <!-- Welcome Banner & Quick Shortcuts -->
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                <div>
-                    <h2 class="text-2xl font-bold text-slate-800">ආයුබෝවන්, ප්‍රජා සංවර්ධන නිලධාරීතුමිය! 👋</h2>
-                    <p class="text-sm text-slate-500 mt-1">වසමේ සමස්ත තොරතුරු සහ සංඛ්‍යාලේඛන එකම බැල්මකින් මෙතැනින් පරීක්ෂා කරන්න.</p>
+            <div class="relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 gn-gradient-bg gn-dot-grid p-6 sm:p-7 rounded-2xl shadow-lg" data-reveal>
+                <div class="gn-blob b1" style="width:160px;height:160px;background:#60a5fa;top:-50px;right:60px;"></div>
+                <div class="gn-blob b2" style="width:120px;height:120px;background:#f472b6;bottom:-40px;right:220px;"></div>
+                <div class="relative z-10">
+                    <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+                        ආයුබෝවන්, ප්‍රජා සංවර්ධන නිලධාරීතුමිය!
+                        <span class="inline-block gn-float">👋</span>
+                    </h2>
+                    <p class="text-sm text-blue-100 mt-1">වසමේ සමස්ත තොරතුරු සහ සංඛ්‍යාලේඛන එකම බැල්මකින් මෙතැනින් පරීක්ෂා කරන්න.</p>
                 </div>
-                <div class="flex flex-wrap gap-2">
-                    <a href="households_list.php" class="px-3 py-2 text-xs font-semibold rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 transition inline-flex items-center gap-1">
-                        <i class="fa-solid fa-list text-slate-500"></i> සියලුම නිවාස
+                <div class="relative z-10 flex flex-wrap gap-2">
+                    <a href="households_list.php" class="gn-ripple gn-glass px-3 py-2 text-xs font-semibold rounded-lg text-white hover:bg-white/20 transition inline-flex items-center gap-1">
+                        <i class="fa-solid fa-list"></i> සියලුම නිවාස
                     </a>
-                    <a href="voters_filters.php?type=voter" class="px-3 py-2 text-xs font-semibold rounded-lg border border-blue-200 bg-blue-50 text-blue-700 hover:bg-blue-100 transition inline-flex items-center gap-1">
+                    <a href="voters_filters.php?type=voter" class="gn-ripple gn-glass px-3 py-2 text-xs font-semibold rounded-lg text-white hover:bg-white/20 transition inline-flex items-center gap-1">
                         <i class="fa-solid fa-check-to-slot"></i> 🗳️ ඡන්ද ලැයිස්තුව (18+)
                     </a>
-                    <a href="reports.php" class="px-3 py-2 text-xs font-semibold rounded-lg border border-indigo-200 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 transition inline-flex items-center gap-1">
+                    <a href="reports.php" class="gn-ripple gn-shine px-3 py-2 text-xs font-semibold rounded-lg bg-white text-indigo-700 hover:bg-blue-50 transition inline-flex items-center gap-1 shadow">
                         <i class="fa-solid fa-chart-pie"></i> ප්‍රස්ථාරික වාර්තා
                     </a>
                 </div>
@@ -82,13 +87,13 @@ require 'includes/header.php';
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
                 
                 <!-- Card 1: Total Households -->
-                <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm hover:shadow-md transition">
+                <div class="gn-hover-lift bg-white rounded-2xl p-5 border border-slate-200 shadow-sm" data-reveal data-tilt>
                     <div class="flex justify-between items-start">
                         <div>
                             <p class="text-xs font-bold uppercase tracking-wider text-slate-400">මුළු ගෘහ සංඛ්‍යාව</p>
-                            <h3 class="text-3xl font-extrabold text-slate-800 mt-2"><?php echo number_format($total_households); ?></h3>
+                            <h3 class="text-3xl font-extrabold text-slate-800 mt-2" data-countup="<?php echo (int) $total_households; ?>">0</h3>
                         </div>
-                        <div class="bg-blue-50 text-blue-600 p-3 rounded-xl text-xl">
+                        <div class="gn-badge-blue gn-badge-grad gn-icon-badge p-3 w-12 h-12 text-xl">
                             <i class="fa-solid fa-house font-bold"></i>
                         </div>
                     </div>
@@ -99,13 +104,13 @@ require 'includes/header.php';
                 </div>
 
                 <!-- Card 2: Total Population -->
-                <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm hover:shadow-md transition">
+                <div class="gn-hover-lift bg-white rounded-2xl p-5 border border-slate-200 shadow-sm" data-reveal data-tilt>
                     <div class="flex justify-between items-start">
                         <div>
                             <p class="text-xs font-bold uppercase tracking-wider text-slate-400">මුළු ජනගහනය</p>
-                            <h3 class="text-3xl font-extrabold text-emerald-600 mt-2"><?php echo number_format($total_members); ?></h3>
+                            <h3 class="text-3xl font-extrabold text-emerald-600 mt-2" data-countup="<?php echo (int) $total_members; ?>">0</h3>
                         </div>
-                        <div class="bg-emerald-50 text-emerald-600 p-3 rounded-xl text-xl">
+                        <div class="gn-badge-emerald gn-badge-grad gn-icon-badge p-3 w-12 h-12 text-xl">
                             <i class="fa-solid fa-users font-bold"></i>
                         </div>
                     </div>
@@ -116,17 +121,20 @@ require 'includes/header.php';
                 </div>
 
                 <!-- Card 3: Male Population -->
-                <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm hover:shadow-md transition">
+                <div class="gn-hover-lift bg-white rounded-2xl p-5 border border-slate-200 shadow-sm" data-reveal data-tilt>
                     <div class="flex justify-between items-start">
                         <div>
                             <p class="text-xs font-bold uppercase tracking-wider text-slate-400">පුරුෂ සංඛ්‍යාව</p>
-                            <h3 class="text-3xl font-extrabold text-cyan-600 mt-2"><?php echo number_format($male_count); ?></h3>
+                            <h3 class="text-3xl font-extrabold text-cyan-600 mt-2" data-countup="<?php echo (int) $male_count; ?>">0</h3>
                         </div>
-                        <div class="bg-cyan-50 text-cyan-600 p-3 rounded-xl text-xl">
+                        <div class="gn-badge-cyan gn-badge-grad gn-icon-badge p-3 w-12 h-12 text-xl">
                             <i class="fa-solid fa-mars"></i>
                         </div>
                     </div>
                     <div class="mt-3 text-xs text-slate-500">
+                        <div class="gn-bar-track mb-1.5">
+                            <div class="gn-bar-fill bg-cyan-500" data-bar-fill="<?php echo $total_members > 0 ? round(($male_count / $total_members) * 100, 1) : 0; ?>"></div>
+                        </div>
                         <span class="font-semibold text-cyan-700">
                             <?php echo $total_members > 0 ? round(($male_count / $total_members) * 100, 1) : 0; ?>%
                         </span> ජනගහනයෙන්
@@ -134,17 +142,20 @@ require 'includes/header.php';
                 </div>
 
                 <!-- Card 4: Female Population -->
-                <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm hover:shadow-md transition">
+                <div class="gn-hover-lift bg-white rounded-2xl p-5 border border-slate-200 shadow-sm" data-reveal data-tilt>
                     <div class="flex justify-between items-start">
                         <div>
                             <p class="text-xs font-bold uppercase tracking-wider text-slate-400">ස්ත්‍රී සංඛ්‍යාව</p>
-                            <h3 class="text-3xl font-extrabold text-pink-600 mt-2"><?php echo number_format($female_count); ?></h3>
+                            <h3 class="text-3xl font-extrabold text-pink-600 mt-2" data-countup="<?php echo (int) $female_count; ?>">0</h3>
                         </div>
-                        <div class="bg-pink-50 text-pink-600 p-3 rounded-xl text-xl">
+                        <div class="gn-badge-pink gn-badge-grad gn-icon-badge p-3 w-12 h-12 text-xl">
                             <i class="fa-solid fa-venus"></i>
                         </div>
                     </div>
                     <div class="mt-3 text-xs text-slate-500">
+                        <div class="gn-bar-track mb-1.5">
+                            <div class="gn-bar-fill bg-pink-500" data-bar-fill="<?php echo $total_members > 0 ? round(($female_count / $total_members) * 100, 1) : 0; ?>"></div>
+                        </div>
                         <span class="font-semibold text-pink-700">
                             <?php echo $total_members > 0 ? round(($female_count / $total_members) * 100, 1) : 0; ?>%
                         </span> ජනගහනයෙන්
@@ -157,10 +168,11 @@ require 'includes/header.php';
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
                 
                 <!-- Gender Doughnut Chart -->
-                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm gn-hover-lift" data-reveal>
                     <div class="flex justify-between items-center mb-4 border-b border-slate-100 pb-3">
-                        <h3 class="text-base font-bold text-slate-800">
-                            <i class="fa-solid fa-chart-pie text-blue-600 mr-2"></i>ස්ත්‍රී / පුරුෂ අනුපාතය
+                        <h3 class="text-base font-bold text-slate-800 flex items-center gap-2">
+                            <span class="gn-badge-blue gn-badge-grad w-8 h-8 text-sm"><i class="fa-solid fa-chart-pie"></i></span>
+                            ස්ත්‍රී / පුරුෂ අනුපාතය
                         </h3>
                         <a href="reports.php" class="text-xs text-blue-600 font-semibold hover:underline">විස්තර &rarr;</a>
                     </div>
@@ -170,10 +182,11 @@ require 'includes/header.php';
                 </div>
 
                 <!-- Employment Status Bar Chart -->
-                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm lg:col-span-2">
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm lg:col-span-2 gn-hover-lift" data-reveal>
                     <div class="flex justify-between items-center mb-4 border-b border-slate-100 pb-3">
-                        <h3 class="text-base font-bold text-slate-800">
-                            <i class="fa-solid fa-briefcase text-indigo-600 mr-2"></i>රැකියා/වෘත්තීය තත්ත්වය
+                        <h3 class="text-base font-bold text-slate-800 flex items-center gap-2">
+                            <span class="gn-badge-violet gn-badge-grad w-8 h-8 text-sm"><i class="fa-solid fa-briefcase"></i></span>
+                            රැකියා/වෘත්තීය තත්ත්වය
                         </h3>
                         <a href="reports.php" class="text-xs text-blue-600 font-semibold hover:underline">සියල්ල බලන්න &rarr;</a>
                     </div>
@@ -185,43 +198,44 @@ require 'includes/header.php';
             </div>
 
             <!-- Assets & Vehicles Summary Section -->
-            <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm mb-8">
+            <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm mb-8" data-reveal>
                 <div class="flex justify-between items-center mb-5 border-b border-slate-100 pb-3">
-                    <h3 class="text-base font-bold text-slate-800">
-                        <i class="fa-solid fa-laptop-house text-emerald-600 mr-2"></i>සම්පත්, වාහන සහ විද්‍යුත් උපකරණ එකතුව
+                    <h3 class="text-base font-bold text-slate-800 flex items-center gap-2">
+                        <span class="gn-badge-emerald gn-badge-grad w-8 h-8 text-sm"><i class="fa-solid fa-laptop-house"></i></span>
+                        සම්පත්, වාහන සහ විද්‍යුත් උපකරණ එකතුව
                     </h3>
                     <span class="text-xs bg-slate-100 text-slate-600 font-semibold px-2.5 py-1 rounded-full">වසමේ එකතුව</span>
                 </div>
                 
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 text-center">
-                    
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 hover:border-blue-300 transition">
-                        <div class="text-slate-500 mb-1 text-lg"><i class="fa-solid fa-mobile-screen-button text-blue-600"></i></div>
-                        <div class="text-2xl font-extrabold text-slate-800"><?php echo number_format($assets['smart_phone'] ?? 0); ?></div>
+
+                    <div class="gn-hover-lift bg-slate-50 p-4 rounded-xl border border-slate-100" data-reveal>
+                        <div class="gn-badge-blue gn-badge-grad gn-icon-badge w-11 h-11 text-lg mx-auto mb-2"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                        <div class="text-2xl font-extrabold text-slate-800" data-countup="<?php echo (int) ($assets['smart_phone'] ?? 0); ?>">0</div>
                         <div class="text-xs font-semibold text-slate-500 mt-1">Smart Phones</div>
                     </div>
 
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 hover:border-indigo-300 transition">
-                        <div class="text-slate-500 mb-1 text-lg"><i class="fa-solid fa-laptop text-indigo-600"></i></div>
-                        <div class="text-2xl font-extrabold text-slate-800"><?php echo number_format($assets['laptop'] ?? 0); ?></div>
+                    <div class="gn-hover-lift bg-slate-50 p-4 rounded-xl border border-slate-100" data-reveal>
+                        <div class="gn-badge-violet gn-badge-grad gn-icon-badge w-11 h-11 text-lg mx-auto mb-2"><i class="fa-solid fa-laptop"></i></div>
+                        <div class="text-2xl font-extrabold text-slate-800" data-countup="<?php echo (int) ($assets['laptop'] ?? 0); ?>">0</div>
                         <div class="text-xs font-semibold text-slate-500 mt-1">Laptops</div>
                     </div>
 
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 hover:border-amber-300 transition">
-                        <div class="text-slate-500 mb-1 text-lg"><i class="fa-solid fa-motorcycle text-amber-600"></i></div>
-                        <div class="text-2xl font-extrabold text-slate-800"><?php echo number_format($assets['motorcycle'] ?? 0); ?></div>
+                    <div class="gn-hover-lift bg-slate-50 p-4 rounded-xl border border-slate-100" data-reveal>
+                        <div class="gn-badge-amber gn-badge-grad gn-icon-badge w-11 h-11 text-lg mx-auto mb-2"><i class="fa-solid fa-motorcycle"></i></div>
+                        <div class="text-2xl font-extrabold text-slate-800" data-countup="<?php echo (int) ($assets['motorcycle'] ?? 0); ?>">0</div>
                         <div class="text-xs font-semibold text-slate-500 mt-1">Motor Cycles</div>
                     </div>
 
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 hover:border-emerald-300 transition">
-                        <div class="text-slate-500 mb-1 text-lg"><i class="fa-solid fa-taxi text-emerald-600"></i></div>
-                        <div class="text-2xl font-extrabold text-slate-800"><?php echo number_format($assets['threewheel'] ?? 0); ?></div>
+                    <div class="gn-hover-lift bg-slate-50 p-4 rounded-xl border border-slate-100" data-reveal>
+                        <div class="gn-badge-emerald gn-badge-grad gn-icon-badge w-11 h-11 text-lg mx-auto mb-2"><i class="fa-solid fa-taxi"></i></div>
+                        <div class="text-2xl font-extrabold text-slate-800" data-countup="<?php echo (int) ($assets['threewheel'] ?? 0); ?>">0</div>
                         <div class="text-xs font-semibold text-slate-500 mt-1">Three Wheelers</div>
                     </div>
 
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 hover:border-teal-300 transition col-span-2 sm:col-span-1">
-                        <div class="text-slate-500 mb-1 text-lg"><i class="fa-solid fa-person-biking text-teal-600"></i></div>
-                        <div class="text-2xl font-extrabold text-slate-800"><?php echo number_format($assets['bicycle'] ?? 0); ?></div>
+                    <div class="gn-hover-lift bg-slate-50 p-4 rounded-xl border border-slate-100 col-span-2 sm:col-span-1" data-reveal>
+                        <div class="gn-badge-cyan gn-badge-grad gn-icon-badge w-11 h-11 text-lg mx-auto mb-2"><i class="fa-solid fa-person-biking"></i></div>
+                        <div class="text-2xl font-extrabold text-slate-800" data-countup="<?php echo (int) ($assets['bicycle'] ?? 0); ?>">0</div>
                         <div class="text-xs font-semibold text-slate-500 mt-1">Bicycles</div>
                     </div>
 
@@ -229,11 +243,12 @@ require 'includes/header.php';
             </div>
 
             <!-- Recent Households Table -->
-            <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+            <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm" data-reveal>
                 <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2 mb-5 border-b border-slate-100 pb-3">
                     <div>
-                        <h3 class="text-base font-bold text-slate-800">
-                            <i class="fa-solid fa-clock-rotate-left text-blue-600 mr-2"></i>අවසානයට ඇතුළත් කළ ගෘහයන් (Recent Households)
+                        <h3 class="text-base font-bold text-slate-800 flex items-center gap-2">
+                            <span class="gn-badge-blue gn-badge-grad w-8 h-8 text-sm"><i class="fa-solid fa-clock-rotate-left"></i></span>
+                            අවසානයට ඇතුළත් කළ ගෘහයන් (Recent Households)
                         </h3>
                     </div>
                     <a href="households_list.php" class="text-xs font-bold text-blue-600 hover:underline">
@@ -274,7 +289,7 @@ require 'includes/header.php';
                                             </span>
                                         </td>
                                         <td class="text-end">
-                                            <a href="household_view.php?id=<?php echo $hh['id']; ?>" class="btn btn-sm btn-light border font-bold text-blue-600 hover:bg-blue-600 hover:text-white transition">
+                                            <a href="household_view.php?id=<?php echo $hh['id']; ?>" class="gn-ripple btn btn-sm btn-light border font-bold text-blue-600 hover:bg-blue-600 hover:text-white transition">
                                                 විස්තර බලන්න &rarr;
                                             </a>
                                         </td>
@@ -282,9 +297,18 @@ require 'includes/header.php';
                                 <?php endforeach; ?>
                             <?php else: ?>
                                 <tr>
-                                    <td colspan="6" class="text-center py-6 text-slate-400">
-                                        <i class="fa-solid fa-folder-open text-2xl mb-2 block"></i>
-                                        තවම දත්ත ඇතුළත් කර නැත.
+                                    <td colspan="6" class="text-center py-10 text-slate-400">
+                                        <svg class="gn-empty-illust" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="70" cy="70" r="62" fill="#eef2ff"/>
+                                            <rect x="38" y="55" width="64" height="48" rx="6" fill="#c7d2fe"/>
+                                            <rect x="48" y="65" width="44" height="6" rx="3" fill="#ffffff"/>
+                                            <rect x="48" y="77" width="30" height="6" rx="3" fill="#ffffff"/>
+                                            <circle cx="70" cy="40" r="10" fill="#818cf8"/>
+                                        </svg>
+                                        <p class="mt-3 font-semibold text-slate-500">තවම දත්ත ඇතුළත් කර නැත.</p>
+                                        <a href="step1_household.php" class="inline-flex items-center gap-1.5 mt-3 text-xs font-bold text-blue-600 hover:underline">
+                                            <i class="fa-solid fa-plus"></i> පළමු ගෘහය එකතු කරන්න
+                                        </a>
                                     </td>
                                 </tr>
                             <?php endif; ?>

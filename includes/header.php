@@ -94,11 +94,11 @@ if (isset($_SESSION['flash'])) {
 <aside id="appSidebar" class="w-64 bg-slate-900 text-white flex flex-col fixed inset-y-0 left-0 z-50 shadow-xl -translate-x-full lg:translate-x-0 transition-transform duration-200">
     <!-- Branding -->
     <div class="h-20 flex items-center gap-3 px-6 bg-slate-950 border-b border-slate-800 shrink-0">
-        <div class="bg-blue-600 text-white p-2.5 rounded-xl text-lg font-bold shadow">
+        <div class="gn-badge-blue gn-badge-grad p-2.5 w-11 h-11 text-lg font-bold gn-float">
             <i class="fa-solid fa-building-columns"></i>
         </div>
         <div class="min-w-0">
-            <h1 class="text-sm font-bold tracking-wide leading-tight truncate">759/A ගල්හේන</h1>
+            <h1 class="text-sm font-bold tracking-wide leading-tight truncate gn-gradient-text">759/A ගල්හේන</h1>
             <p class="text-[11px] text-slate-400">ග්‍රාම නිලධාරී වසම</p>
         </div>
         <button id="sidebarCloseBtn" class="ml-auto text-slate-400 hover:text-white lg:hidden">
@@ -108,13 +108,13 @@ if (isset($_SESSION['flash'])) {
 
     <!-- Quick Stats -->
     <div class="grid grid-cols-2 gap-2 px-3 pt-4">
-        <div class="bg-slate-800/60 rounded-xl px-3 py-2 text-center">
-            <div class="text-base font-extrabold text-white leading-tight"><?php echo number_format($__hh_count); ?></div>
-            <div class="text-[10px] text-slate-400 font-semibold uppercase tracking-wide">ගෘහ</div>
+        <div class="bg-slate-800/60 rounded-xl px-3 py-2 text-center gn-hover-lift">
+            <div class="text-base font-extrabold text-white leading-tight" data-countup="<?php echo (int) $__hh_count; ?>">0</div>
+            <div class="text-[10px] text-slate-400 font-semibold uppercase tracking-wide"><i class="fa-solid fa-house text-blue-400 mr-1"></i>ගෘහ</div>
         </div>
-        <div class="bg-slate-800/60 rounded-xl px-3 py-2 text-center">
-            <div class="text-base font-extrabold text-white leading-tight"><?php echo number_format($__mem_count); ?></div>
-            <div class="text-[10px] text-slate-400 font-semibold uppercase tracking-wide">සාමාජිකයින්</div>
+        <div class="bg-slate-800/60 rounded-xl px-3 py-2 text-center gn-hover-lift">
+            <div class="text-base font-extrabold text-white leading-tight" data-countup="<?php echo (int) $__mem_count; ?>">0</div>
+            <div class="text-[10px] text-slate-400 font-semibold uppercase tracking-wide"><i class="fa-solid fa-users text-emerald-400 mr-1"></i>සාමාජිකයින්</div>
         </div>
     </div>
 
@@ -124,8 +124,8 @@ if (isset($_SESSION['flash'])) {
         <?php foreach ($__nav_items as $item): ?>
             <?php $isActive = ($active === $item['key']); ?>
             <a href="<?php echo $item['url']; ?>"
-               class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm transition <?php echo $isActive
-                    ? 'font-semibold bg-blue-600 text-white shadow-sm'
+               class="gn-ripple flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm transition <?php echo $isActive
+                    ? 'font-semibold bg-blue-600 text-white shadow-md shadow-blue-600/30'
                     : 'font-medium text-slate-300 hover:text-white hover:bg-slate-800/70'; ?>">
                 <i class="fa-solid <?php echo $item['icon']; ?> w-5 text-center text-base"></i>
                 <span><?php echo $item['label']; ?></span>
@@ -136,11 +136,11 @@ if (isset($_SESSION['flash'])) {
 
     <!-- Sidebar Footer Actions -->
     <div class="p-4 border-t border-slate-800 bg-slate-950/50 space-y-2 shrink-0">
-        <a href="step1_household.php" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md flex items-center justify-center gap-2 transition">
+        <a href="step1_household.php" class="gn-ripple gn-shine w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md flex items-center justify-center gap-2 transition">
             <i class="fa-solid fa-plus text-sm"></i>
             <span>අලුත් ගෙදරක් එකතු කරන්න</span>
         </a>
-        <a href="logout.php" class="w-full bg-rose-600/10 hover:bg-rose-600 text-rose-300 hover:text-white font-bold text-xs px-4 py-2 rounded-xl flex items-center justify-center gap-2 transition">
+        <a href="logout.php" class="gn-ripple w-full bg-rose-600/10 hover:bg-rose-600 text-rose-300 hover:text-white font-bold text-xs px-4 py-2 rounded-xl flex items-center justify-center gap-2 transition">
             <i class="fa-solid fa-right-from-bracket text-sm"></i>
             <span>පද්ධතියෙන් ඉවත් වන්න</span>
         </a>
@@ -190,10 +190,10 @@ if (isset($_SESSION['flash'])) {
 
             <!-- Notifications -->
             <div class="relative">
-                <button id="notifBtn" class="relative text-slate-500 hover:text-blue-600 w-9 h-9 flex items-center justify-center rounded-lg hover:bg-slate-100 transition">
+                <button id="notifBtn" class="gn-bell relative text-slate-500 hover:text-blue-600 w-9 h-9 flex items-center justify-center rounded-lg hover:bg-slate-100 transition">
                     <i class="fa-solid fa-bell text-lg"></i>
                     <?php if (count($__notif_items) > 0): ?>
-                        <span class="absolute top-1 right-1 w-2 h-2 bg-rose-500 rounded-full ring-2 ring-white"></span>
+                        <span class="gn-pulse-ring absolute top-1 right-1 w-2 h-2 bg-rose-500 rounded-full ring-2 ring-white text-rose-500"></span>
                     <?php endif; ?>
                 </button>
                 <div id="notifDropdown" class="hidden absolute right-0 mt-2 w-80 bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden z-50">
@@ -205,7 +205,7 @@ if (isset($_SESSION['flash'])) {
                         <?php if (count($__notif_items) > 0): ?>
                             <?php foreach ($__notif_items as $n): ?>
                                 <a href="household_view.php?id=<?php echo $n['id']; ?>" class="flex items-start gap-3 px-4 py-3 hover:bg-slate-50 transition">
-                                    <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+                                    <div class="gn-badge-emerald gn-badge-grad w-8 h-8 shrink-0">
                                         <i class="fa-solid fa-house text-xs"></i>
                                     </div>
                                     <div class="min-w-0">
@@ -224,8 +224,8 @@ if (isset($_SESSION['flash'])) {
 
             <!-- Admin Profile Dropdown -->
             <div class="relative pl-2 sm:pl-3 border-l border-slate-200">
-                <button id="userMenuBtn" class="flex items-center gap-2 sm:gap-3">
-                    <div class="w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center shadow-inner shrink-0">
+                <button id="userMenuBtn" class="flex items-center gap-2 sm:gap-3 group">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 via-indigo-500 to-violet-600 text-white font-bold flex items-center justify-center shadow-lg shadow-blue-500/30 shrink-0 ring-2 ring-white group-hover:scale-105 transition">
                         <span><?php echo strtoupper(substr($_SESSION['full_name'] ?? 'GN', 0, 2)); ?></span>
                     </div>
                     <div class="hidden lg:block text-left">

@@ -69,3 +69,193 @@ main { animation: gnFadeIn .25s ease; }
 @media (max-width: 1023px) {
     .lg\:ml-64 { margin-left: 0 !important; }
 }
+
+/* ==========================================================
+   ADVANCED UI KIT — gradients, glass, motion, icon accents
+   ========================================================== */
+
+:root {
+    --gn-primary-2: #4f46e5;
+    --gn-glow: 0 8px 24px -6px rgba(37, 99, 235, .35);
+}
+
+/* ---------- Gradient text / brand accents ---------- */
+.gn-gradient-text {
+    background: linear-gradient(90deg, #2563eb, #7c3aed 60%, #ec4899);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.gn-gradient-bg {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 45%, #4f46e5 100%);
+}
+
+/* ---------- Animated blob backdrop (used on login / hero panels) ---------- */
+.gn-blob {
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(60px);
+    opacity: .55;
+    animation: gnFloat 9s ease-in-out infinite;
+    pointer-events: none;
+}
+.gn-blob.b2 { animation-duration: 12s; animation-delay: -3s; }
+.gn-blob.b3 { animation-duration: 7s;  animation-delay: -5s; }
+@keyframes gnFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%      { transform: translate(20px, -25px) scale(1.08); }
+    66%      { transform: translate(-15px, 15px) scale(.96); }
+}
+
+/* Soft grid/dot texture overlay for hero panels */
+.gn-dot-grid {
+    background-image: radial-gradient(rgba(255,255,255,.18) 1px, transparent 1.5px);
+    background-size: 22px 22px;
+}
+
+/* ---------- Glass card ---------- */
+.gn-glass {
+    background: rgba(255, 255, 255, .08);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, .18);
+}
+
+/* ---------- Card hover-lift + glow ---------- */
+.gn-hover-lift {
+    transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease, border-color .25s ease;
+}
+.gn-hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 32px -12px rgba(15, 23, 42, .18);
+    border-color: #c7d2fe;
+}
+
+/* Icon badge that scales/rotates gently on parent hover */
+.gn-hover-lift:hover .gn-icon-badge {
+    transform: scale(1.12) rotate(-6deg);
+}
+.gn-icon-badge {
+    transition: transform .3s cubic-bezier(.34,1.56,.64,1);
+}
+
+/* ---------- Animated gradient icon badges ---------- */
+.gn-badge-grad {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    color: #fff;
+    box-shadow: var(--gn-glow);
+}
+.gn-badge-blue   { background: linear-gradient(135deg,#3b82f6,#2563eb); }
+.gn-badge-emerald{ background: linear-gradient(135deg,#34d399,#059669); }
+.gn-badge-pink   { background: linear-gradient(135deg,#f472b6,#db2777); }
+.gn-badge-cyan   { background: linear-gradient(135deg,#22d3ee,#0891b2); }
+.gn-badge-amber  { background: linear-gradient(135deg,#fbbf24,#d97706); }
+.gn-badge-violet { background: linear-gradient(135deg,#a78bfa,#7c3aed); }
+
+/* ---------- Staggered reveal-on-scroll (paired with theme.js [data-reveal]) ---------- */
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity .55s ease, transform .55s cubic-bezier(.2,.8,.2,1);
+}
+[data-reveal].gn-reveal {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---------- Pulse ring — used for "live"/notification dots ---------- */
+.gn-pulse-ring { position: relative; }
+.gn-pulse-ring::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 999px;
+    border: 2px solid currentColor;
+    opacity: .55;
+    animation: gnPulseRing 1.8s cubic-bezier(0,.4,.6,1) infinite;
+}
+@keyframes gnPulseRing {
+    0%   { transform: scale(.75); opacity: .6; }
+    100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* Bell shake on hover */
+.gn-bell:hover i { animation: gnBellShake .5s ease; }
+@keyframes gnBellShake {
+    0%, 100% { transform: rotate(0); }
+    20%      { transform: rotate(14deg); }
+    40%      { transform: rotate(-12deg); }
+    60%      { transform: rotate(8deg); }
+    80%      { transform: rotate(-6deg); }
+}
+
+/* ---------- Ripple effect target (theme.js injects the span) ---------- */
+.gn-ripple { position: relative; overflow: hidden; }
+.gn-ripple-dot {
+    position: absolute;
+    border-radius: 999px;
+    background: rgba(255,255,255,.55);
+    transform: scale(0);
+    animation: gnRipple .6s ease-out;
+    pointer-events: none;
+}
+@keyframes gnRipple {
+    to { transform: scale(2.6); opacity: 0; }
+}
+
+/* ---------- Animated progress / stat bars ---------- */
+.gn-bar-track { background: #eef2f7; border-radius: 999px; overflow: hidden; height: 8px; }
+.gn-bar-fill  { height: 100%; border-radius: 999px; width: 0; transition: width 1.1s cubic-bezier(.2,.8,.2,1); }
+
+/* ---------- Skeleton shimmer loader ---------- */
+.gn-skel {
+    background: linear-gradient(90deg, #eef2f7 25%, #f8fafc 37%, #eef2f7 63%);
+    background-size: 400% 100%;
+    animation: gnShimmer 1.4s ease infinite;
+    border-radius: .6rem;
+}
+@keyframes gnShimmer {
+    0%   { background-position: 100% 50%; }
+    100% { background-position: 0 50%; }
+}
+
+/* ---------- Sidebar nav icon micro-bounce ---------- */
+#appSidebar a i.fa-solid { transition: transform .25s cubic-bezier(.34,1.56,.64,1); display: inline-block; }
+#appSidebar a:hover i.fa-solid { transform: translateX(2px) scale(1.1); }
+
+/* Active sidebar link left indicator */
+#appSidebar a.bg-blue-600 { position: relative; }
+
+/* ---------- Fancy scroll-in for tables rows ---------- */
+.table-hover tbody tr { animation: gnRowIn .35s ease both; }
+@keyframes gnRowIn {
+    from { opacity: 0; transform: translateX(-6px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ---------- Floating decorative icon ---------- */
+.gn-float { animation: gnFloatIcon 4s ease-in-out infinite; }
+@keyframes gnFloatIcon {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-8px); }
+}
+
+/* ---------- Empty-state illustration wrapper ---------- */
+.gn-empty-illust { width: 132px; height: 132px; margin: 0 auto; }
+
+/* ---------- Button shine sweep (primary CTAs) ---------- */
+.gn-shine { position: relative; overflow: hidden; }
+.gn-shine::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -60%;
+    width: 40%; height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent);
+    transform: skewX(-20deg);
+    transition: left .7s ease;
+}
+.gn-shine:hover::before { left: 130%; }
